@@ -11,17 +11,38 @@ void loadScripts()
 
 	var globals = var.emptyObject;
 
-	auto scriptFiles = dirEntries("scripts/", SpanMode.depth).filter!(f => f.name.endsWith(".ds"));
-
-	foreach (ds; scriptFiles)
+	if (!"scripts".exists)
 	{
-		globals.name = ds.name;
-		globals.write = (string txt) { writeln(txt); };
-		globals.popup = (string msg) { auto msg_popup = new MessageBox(msg); };
-		writeln("Loaded " ~ ds.name ~ " into memory");
-		auto data = readText(ds.name);
-		interpret(data, globals);
+		"scripts".mkdir();
+		auto scriptFiles = dirEntries("scripts/", SpanMode.depth)
+			.filter!(f => f.name.endsWith(".ds"));
+
+		foreach (ds; scriptFiles)
+		{
+			globals.name = ds.name;
+			globals.write = (string txt) { writeln(txt); };
+			globals.popup = (string msg) { auto msg_popup = new MessageBox(msg); };
+			writeln("Loaded " ~ ds.name ~ " into memory");
+			auto data = readText(ds.name);
+			interpret(data, globals);
+		}
 	}
+	else
+	{
+		auto scriptFiles = dirEntries("scripts/", SpanMode.depth)
+			.filter!(f => f.name.endsWith(".ds"));
+
+		foreach (ds; scriptFiles)
+		{
+			globals.name = ds.name;
+			globals.write = (string txt) { writeln(txt); };
+			globals.popup = (string msg) { auto msg_popup = new MessageBox(msg); };
+			writeln("Loaded " ~ ds.name ~ " into memory");
+			auto data = readText(ds.name);
+			interpret(data, globals);
+		}
+	}
+
 }
 
 void main()
