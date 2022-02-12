@@ -22,7 +22,6 @@ void loadScripts()
 			globals.name = ds.name;
 			globals.write = (string txt) { writeln(txt); };
 			globals.popup = (string msg) { auto msg_popup = new MessageBox(msg); };
-			writeln("Loaded " ~ ds.name ~ " into memory");
 			auto data = readText(ds.name);
 			interpret(data, globals);
 		}
@@ -37,7 +36,6 @@ void loadScripts()
 			globals.name = ds.name;
 			globals.write = (string txt) { writeln(txt); };
 			globals.popup = (string msg) { auto msg_popup = new MessageBox(msg); };
-			writeln("Loaded " ~ ds.name ~ " into memory");
 			auto data = readText(ds.name);
 			interpret(data, globals);
 		}
