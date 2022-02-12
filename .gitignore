@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/makercord
+makercord.so
+makercord.dylib
+makercord.dll
+makercord.a
+makercord.lib
+makercord-test-*
+*.exe
+*.o
+*.obj
+*.lst

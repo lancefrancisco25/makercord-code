@@ -1,0 +1,5 @@
+name "makercord"
+description "A minimal but epic discord bot maker"
+authors "Lily"
+copyright "Copyright © 2022, Lily"
+license "MIT"
