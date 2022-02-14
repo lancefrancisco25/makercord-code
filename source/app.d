@@ -28,6 +28,8 @@ void newProj(string name, ProjectType projtype)
 	auto token = new TextEdit(creation);
 	auto prfx = new TextLabel("Prefix", TextAlignment.Center, creation);
 	auto prefix = new TextEdit(creation);
+	auto sex = new TextLabel("Test guild (Slash commands and such)", TextAlignment.Center, creation); // funny
+	auto test = new TextEdit(creation);
 	auto button = new Button("Confirm", creation);
 	button.addEventListener((scope ClickEvent ev) { creation.close(); });
 
@@ -45,7 +47,12 @@ void newProj(string name, ProjectType projtype)
 		name.mkdir();
 		write(name ~ "/bot.py", "import disnake
 from disnake.ext import commands
-bot = commands.Bot(command_prefix=\">\", test_guilds=[12345])
+bot = commands.Bot(command_prefix=\""
+				~ prefix.content ~ "\", test_guilds=["
+				~ test.content ~ "])
+
+bot.run(\""
+				~ token.content ~ "\")
 		");
 	}
 
@@ -110,7 +117,7 @@ void main()
 
 	@scriptable struct Menu
 	{
-		static string sugFile = "project.bot";
+		static string sugFile = "Folder";
 		static string sugProj = "ProjectName";
 		@menu("&File")
 		{
